@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "88642301823",
+    "project_id": "adorn-walls",
+    "storage_bucket": "adorn-walls.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88642301823:android:7851cb00652edfb292344a",
+        "android_client_info": {
+          "package_name": "com.adorn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88642301823-hqqeeunuv5f654us11a2sv0ic86ihsgs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.adorn",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "88642301823-jp04iinokqm4s42j9o8j6ntb5h17jhrh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoKIWkJzlbQyXJU3mupuIWOQYEgDJtbYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88642301823-jp04iinokqm4s42j9o8j6ntb5h17jhrh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
