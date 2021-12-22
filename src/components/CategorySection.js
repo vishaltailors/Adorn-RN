@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
     width: '90%',
     textAlign: 'center',
-    top: 37,
+    top: '40%',
   },
   catThumbnail: {
     position: 'relative',

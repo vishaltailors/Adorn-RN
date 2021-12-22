@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 
 import AppLogo from './assets/images/logo.png';
 import Category from './screens/Category';
+import Credits from './screens/Credits';
 import GetStarted from './screens/GetStarted';
 import SetWall from './screens/SetWall';
 import { authenticate } from './store/authSlice';
@@ -79,6 +80,7 @@ const Navigation = () => {
               <Stack.Screen name="AppHome" component={TabNavigation} />
               <Stack.Screen name="SetWall" component={SetWall} />
               <Stack.Screen name="Category" component={Category} />
+              <Stack.Screen name="Credits" component={Credits} />
             </Stack.Navigator>
           </NavigationContainer>
         </>

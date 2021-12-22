@@ -16,7 +16,7 @@ export const getImages = createAsyncThunk('image/getImages', async () => {
     const snapshot = await firestore().collection('images').get();
     snapshot.forEach((doc) => {
       const data = doc.data();
-      const timestamp = data.timestamp.seconds;
+      const timestamp = data.timestamp.toDate().getTime();
       images.push({
         ...data,
         id: doc.id,
@@ -49,7 +49,7 @@ export const getCategoryImages = createAsyncThunk('image/getCategoryImages', asy
       .get();
     snapshot.forEach((doc) => {
       const data = doc.data();
-      const timestamp = data.timestamp.seconds;
+      const timestamp = data.timestamp.toDate().getTime();
       images.push({
         ...data,
         id: doc.id,
@@ -97,6 +97,15 @@ export const removeFromFavourites = createAsyncThunk(
 export const imageSlice = createSlice({
   name: 'image',
   initialState,
+  reducers: {
+    setImages: (state, action) => {
+      if (action.payload.action === 'added') {
+        state.images.push(action.payload.image);
+      } else {
+        state.images = state.images.filter((obj) => obj.id !== action.payload.image.id);
+      }
+    },
+  },
   extraReducers: {
     [getImages.pending]: (state) => {
       state.imageLoading = true;
@@ -126,4 +135,5 @@ export const imageSlice = createSlice({
   },
 });
 
+export const { setImages } = imageSlice.actions;
 export default imageSlice.reducer;

@@ -3,7 +3,7 @@ import React from 'react';
 import { WEBCLIENT_ID } from '@env';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { User, Logout } from 'iconsax-react-native';
+import { User, Logout, Information } from 'iconsax-react-native';
 import objectPath from 'object-path';
 import {
   View,
@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { authenticate } from '../store/authSlice';
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
   const user = useSelector((state) => objectPath.get(state, 'auth.user', {}));
   const dispatch = useDispatch();
   const scheme = useColorScheme();
@@ -71,6 +71,17 @@ const Settings = () => {
             <>
               <Logout size={30} color={iconColor} />
               <Text style={[styles.fs16, styles.optionText]}>Logout</Text>
+            </>
+          </TouchableHighlight>
+          <TouchableHighlight
+            activeOpacity={0.2}
+            underlayColor={scheme === 'dark' ? '#292929' : '#dddddd'}
+            style={styles.touchableOption}
+            onPress={() => navigation.navigate('Credits')}
+          >
+            <>
+              <Information size={30} color={iconColor} />
+              <Text style={[styles.fs16, styles.optionText]}>Info & Credits</Text>
             </>
           </TouchableHighlight>
         </>
