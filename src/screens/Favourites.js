@@ -87,9 +87,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    width: '100%',
+    width: width > 700 ? width * 0.7 : width,
     height: undefined,
     aspectRatio: 1,
+    alignSelf: 'center',
   },
   scrollView: {
     paddingHorizontal: 20,

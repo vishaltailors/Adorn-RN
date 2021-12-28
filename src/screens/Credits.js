@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { Text, StyleSheet, SafeAreaView, View, Linking, Image } from 'react-native';
+import { Text, StyleSheet, SafeAreaView, View, Linking, Image, Dimensions } from 'react-native';
 
 import Contact from '../assets/images/contact.png';
 
+const { width } = Dimensions.get('window');
 const Credits = () => (
   <SafeAreaView style={{ flex: 1 }}>
     <View style={styles.main}>
@@ -32,8 +33,16 @@ const Credits = () => (
           Drop a mail
         </Text>
       </Text>
-      <View style={{ flex: 1 }}>
-        <Image source={Contact} style={{ position: 'absolute', width: '100%', height: '100%' }} />
+      <View style={{ flex: 1, justifyContent: 'center' }}>
+        <Image
+          source={Contact}
+          style={{
+            position: 'absolute',
+            width: width > 700 ? '70%' : '100%',
+            height: width > 700 ? '70%' : '100%',
+            alignSelf: 'center',
+          }}
+        />
       </View>
     </View>
   </SafeAreaView>

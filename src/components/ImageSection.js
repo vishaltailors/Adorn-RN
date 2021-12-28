@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     width: width * 0.36,
     height: height * 0.24,
+    backgroundColor: '#797979',
   },
   favouriteIcon: {
     width: 60,

@@ -5,12 +5,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Google } from 'iconsax-react-native';
-import { View, Text, Image, StyleSheet, useColorScheme, Pressable } from 'react-native';
+import { View, Text, Image, StyleSheet, useColorScheme, Pressable, Dimensions } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import Toast from 'react-native-simple-toast';
 
 import OnboardingStepOne from '../assets/images/onboarding-step1.png';
 import OnboardingStepTwo from '../assets/images/onboarding-step2.png';
+
+const { width, height } = Dimensions.get('window');
 
 const GetStarted = ({ navigation }) => {
   const scheme = useColorScheme();
@@ -54,10 +56,19 @@ const GetStarted = ({ navigation }) => {
       showNext={showNext}
       showSkip={!showNext}
       skipToPage={1}
+      imageContainerStyles={{
+        paddingBottom: 0,
+      }}
       pages={[
         {
           backgroundColor: color,
-          image: <Image source={OnboardingStepOne} style={styles.image} />,
+          image: (
+            <Image
+              source={OnboardingStepOne}
+              resizeMode="contain"
+              style={{ width, height: height * 0.35 }}
+            />
+          ),
           title: '',
           subtitle: (
             <View style={{ alignItems: 'center' }}>
@@ -78,7 +89,13 @@ const GetStarted = ({ navigation }) => {
         },
         {
           backgroundColor: color,
-          image: <Image source={OnboardingStepTwo} style={[styles.image, { height: 350 }]} />,
+          image: (
+            <Image
+              source={OnboardingStepTwo}
+              resizeMode="contain"
+              style={{ width, height: height * 0.45 }}
+            />
+          ),
           title: '',
           subtitle: '"Press and hold" on any wallpaper thumbnail to add it to favourites section.',
         },
@@ -90,11 +107,6 @@ const GetStarted = ({ navigation }) => {
 export default GetStarted;
 
 const styles = StyleSheet.create({
-  image: {
-    width: '100%',
-    height: 250,
-    marginBottom: -100,
-  },
   signInBtn: {
     flexDirection: 'row',
     alignItems: 'center',

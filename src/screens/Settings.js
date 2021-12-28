@@ -73,17 +73,6 @@ const Settings = ({ navigation }) => {
               <Text style={[styles.fs16, styles.optionText]}>Logout</Text>
             </>
           </TouchableHighlight>
-          <TouchableHighlight
-            activeOpacity={0.2}
-            underlayColor={scheme === 'dark' ? '#292929' : '#dddddd'}
-            style={styles.touchableOption}
-            onPress={() => navigation.navigate('Credits')}
-          >
-            <>
-              <Information size={30} color={iconColor} />
-              <Text style={[styles.fs16, styles.optionText]}>Info & Credits</Text>
-            </>
-          </TouchableHighlight>
         </>
       ) : (
         <>
@@ -102,8 +91,20 @@ const Settings = ({ navigation }) => {
               <Text style={styles.fs16}>Add account</Text>
             </Pressable>
           </View>
+          <View style={styles.hr} />
         </>
       )}
+      <TouchableHighlight
+        activeOpacity={0.2}
+        underlayColor={scheme === 'dark' ? '#292929' : '#dddddd'}
+        style={styles.touchableOption}
+        onPress={() => navigation.navigate('Credits')}
+      >
+        <>
+          <Information size={30} color={iconColor} />
+          <Text style={[styles.fs16, styles.optionText]}>Info & Credits</Text>
+        </>
+      </TouchableHighlight>
     </View>
   );
 };

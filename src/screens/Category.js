@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     width: width * 0.42,
     height: height * 0.28,
+    backgroundColor: '#797979',
   },
   favouriteIcon: {
     width: 60,
