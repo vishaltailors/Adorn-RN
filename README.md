@@ -1,7 +1,7 @@
 # Adorn Wallpapers
 [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" width="150">](https://play.google.com/store/apps/details?id=com.adorn)
 
-Android is the open source wallpaper application built with react native and currently available for android devices. 
+Adorn is the open source wallpaper application built with react native and currently available for android devices. 
 
 Some of the features of this app are as follows:
 
