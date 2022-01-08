@@ -26,7 +26,7 @@ const ImageSection = ({ sectionTitle, images }) => {
 
   const addToFav = (imageObj) => {
     if (userId) {
-      if (imageObj.favouriteOf && Object.keys(imageObj.favouriteOf).length) {
+      if (imageObj.favouriteOf && objectPath.get(imageObj, ['favouriteOf', userId], false)) {
         dispatch(removeFromFavourites({ userId, imageObj }));
         setAnimSpeed(-1);
         setFavAnim({ id: imageObj.id, animate: true });
