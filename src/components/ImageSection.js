@@ -5,7 +5,7 @@ import { useTransition, animated } from '@react-spring/native';
 import LottieView from 'lottie-react-native';
 import objectPath from 'object-path';
 import PropTypes from 'prop-types';
-import { ScrollView, Text, Image, TouchableHighlight, StyleSheet, Dimensions } from 'react-native';
+import { ScrollView, Text, Image, TouchableHighlight, StyleSheet, Dimensions, PixelRatio } from 'react-native';
 import Toast from 'react-native-simple-toast';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -55,6 +55,9 @@ const ImageSection = ({ sectionTitle, images }) => {
     }
   );
 
+  const thumbWidthPx = Math.round(PixelRatio.getPixelSizeForLayoutSize(width * 0.36));
+  const thumbHeightPx = Math.round(PixelRatio.getPixelSizeForLayoutSize(height * .24));
+
   return (
     <>
       <Text style={[styles.sectionTitle, { marginTop: sectionTitle === 'Newest' ? 0 : 20 }]}>
@@ -69,6 +72,14 @@ const ImageSection = ({ sectionTitle, images }) => {
         horizontal
       >
         {transitions((style, item) => {
+          let uri;
+          if(item.source.includes('res.cloudinary.com')){
+            uri = item.source.replace(/upload.*\/Adorn/g, `upload/c_fit,h_${thumbHeightPx},w_${thumbWidthPx}/Adorn`)
+          }else if(item.source.includes('ik.imagekit.io')){
+            uri = `${item.source}/tr:h-${thumbHeightPx},w-${thumbWidthPx}`;
+          }else {
+            uri = item.source;
+          }
           return (
             <animated.View
               style={{
@@ -86,7 +97,7 @@ const ImageSection = ({ sectionTitle, images }) => {
                   <Image
                     style={styles.wallThumbnail}
                     source={{
-                      uri: item.source,
+                      uri,
                     }}
                   />
                   {objectPath.get(item, ['favouriteOf', userId], false) && (

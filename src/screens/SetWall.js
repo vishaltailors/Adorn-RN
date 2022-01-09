@@ -40,7 +40,7 @@ const SetWall = ({ route }) => {
     {
       title: 'Both Screen',
       name: 'bothScreen',
-      flag: 0,
+      flag: 3,
     },
   ];
 
@@ -73,6 +73,7 @@ const SetWall = ({ route }) => {
           <Text style={styles.setWallText}>Set Wallpaper</Text>
         </TouchableOpacity>
       </View>
+      {/* Setwall modal  */}
       <View>
         <Modal
           isVisible={modalVisible}

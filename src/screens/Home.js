@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import firestore from '@react-native-firebase/firestore';
 import LottieView from 'lottie-react-native';
 import objectPath from 'object-path';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import LoadingAnim from '../assets/lottie/loading.json';
 import CategorySection from '../components/CategorySection';
 import ImageSection from '../components/ImageSection';
-import { setImages } from '../store/imageSlice';
 
 const Home = () => {
   const isImageLoading = useSelector((state) => objectPath.get(state, 'image.imageLoading', false));
@@ -42,35 +40,6 @@ const Home = () => {
     }
     return imagesArr;
   };
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const subscriber = firestore()
-      .collection('images')
-      .onSnapshot((snapshot) => {
-        let image = {};
-        snapshot.docChanges().forEach((change) => {
-          if (change.type === 'added' || change.type === 'removed') {
-            const data = change.doc.data();
-            const timestamp = data.timestamp.toDate().getTime();
-            image = {
-              ...data,
-              id: change.doc.id,
-              timestamp,
-            };
-            const isDuplicate = images.find((obj) => obj.id === image.id);
-            if (!isDuplicate) {
-              dispatch(setImages({ image, action: change.type }));
-            }
-          }
-        });
-      });
-    return () => {
-      subscriber();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <View style={{ flex: 1 }}>
