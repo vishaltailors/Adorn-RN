@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import LottieView from 'lottie-react-native';
 import objectPath from 'object-path';
-import { View, ScrollView, Image, Text, Pressable, StyleSheet, Dimensions } from 'react-native';
+import { View, ScrollView, Image, Text, Pressable, StyleSheet, Dimensions, PixelRatio } from 'react-native';
 import Toast from 'react-native-simple-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -52,6 +52,9 @@ const Category = ({ navigation, route }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryObj.id]);
 
+  const thumbWidthPx = Math.round(PixelRatio.getPixelSizeForLayoutSize(width * 0.42));
+  const thumbHeightPx = Math.round(PixelRatio.getPixelSizeForLayoutSize(height * 0.28));
+
   return (
     <View style={{ flex: 1 }}>
       <Text style={styles.catTitle}>{categoryObj.name}</Text>
@@ -60,7 +63,16 @@ const Category = ({ navigation, route }) => {
         <LottieView source={LoadingAnim} autoPlay loop style={{ marginTop: 25 }} />
       ) : (
         <ScrollView contentContainerStyle={styles.scrollView}>
-          {categoryImages.map((obj) => (
+          {categoryImages.map((obj) => { 
+            let uri;
+            if(obj.source.includes('res.cloudinary.com')){
+              uri = obj.source.replace(/upload.*\/Adorn/g, `upload/c_fit,h_${thumbHeightPx},w_${thumbWidthPx}/Adorn`)
+            }else if(obj.source.includes('ik.imagekit.io')){
+              uri = `${obj.source}/tr:h-${thumbHeightPx},w-${thumbWidthPx}`;
+            }else {
+              uri = obj.source;
+            }
+            return (
             <Pressable
               key={obj.id}
               style={styles.wallThumbnail}
@@ -70,7 +82,7 @@ const Category = ({ navigation, route }) => {
               <Image
                 style={styles.wallThumbnail}
                 source={{
-                  uri: obj.source,
+                  uri,
                 }}
                 resizeMode='cover'
                 backgroundColor='#797979'
@@ -91,7 +103,7 @@ const Category = ({ navigation, route }) => {
                 />
               )}
             </Pressable>
-          ))}
+          )})}
         </ScrollView>
       )}
     </View>

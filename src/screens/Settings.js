@@ -3,7 +3,7 @@ import React from 'react';
 import { WEBCLIENT_ID } from '@env';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { User, Logout, Information } from 'iconsax-react-native';
+import { User, Logout, Information, Coffee } from 'iconsax-react-native';
 import objectPath from 'object-path';
 import {
   View,
@@ -13,6 +13,7 @@ import {
   Image,
   TouchableHighlight,
   useColorScheme,
+  Linking
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -94,6 +95,19 @@ const Settings = ({ navigation }) => {
           <View style={styles.hr} />
         </>
       )}
+      <TouchableHighlight
+        activeOpacity={0.2}
+        underlayColor={scheme === 'dark' ? '#292929' : '#dddddd'}
+        style={styles.touchableOption}
+        onPress={() => {
+          Linking.openURL('https://www.buymeacoffee.com/vishaltailor')
+        }}
+      >
+        <>
+          <Coffee size={30} color={iconColor} />
+          <Text style={[styles.fs16, styles.optionText]}>Buy me a coffee</Text>
+        </>
+      </TouchableHighlight>
       <TouchableHighlight
         activeOpacity={0.2}
         underlayColor={scheme === 'dark' ? '#292929' : '#dddddd'}
