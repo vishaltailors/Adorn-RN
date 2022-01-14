@@ -15,6 +15,9 @@ const Home = () => {
     objectPath.get(state, 'image.categoryLoading', false)
   );
   const images = useSelector((state) => objectPath.get(state, 'image.images', []));
+  const isPlaylistRunning = useSelector((state) =>
+    objectPath.get(state, 'playlist.playlist.running', false)
+  );
 
   const sort = (sectionTitle) => {
     const imagesArr = [...images];
@@ -44,6 +47,11 @@ const Home = () => {
   return (
     <View style={{ flex: 1 }}>
       <Text style={styles.appTitle}>Adorn Walls</Text>
+      {isPlaylistRunning && (
+        <View style={styles.playlistIndication}>
+          <Text>Wallpaper Playlist is on. you can turn it off from settings</Text>
+        </View>
+      )}
       {isImageLoading && isCategoryLoading ? (
         <LottieView source={LoadingAnim} autoPlay loop style={{ marginTop: 25 }} />
       ) : (
@@ -66,5 +74,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginHorizontal: 10,
     color: '#FF5353',
+  },
+  playlistIndication: {
+    borderWidth: 1,
+    marginHorizontal: 14,
+    marginBottom: 10,
+    padding: 10,
+    borderRadius: 7,
   },
 });

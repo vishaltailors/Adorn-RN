@@ -8,12 +8,14 @@ import AnimatedSplash from 'react-native-animated-splash-screen';
 import { useDispatch } from 'react-redux';
 
 import AppLogo from './assets/images/logo.png';
+import { SetWallsPlaylistAndroid } from './Modules';
 import Category from './screens/Category';
 import Credits from './screens/Credits';
 import GetStarted from './screens/GetStarted';
 import SetWall from './screens/SetWall';
 import { authenticate } from './store/authSlice';
 import { getCategories, getImages } from './store/imageSlice';
+import { getPlaylistData, setPlaylistData } from './store/playlistSlice';
 import TabNavigation from './TabNavigation';
 
 const Stack = createStackNavigator();
@@ -32,6 +34,7 @@ const Navigation = () => {
   };
 
   useEffect(() => {
+    let playlist = {};
     auth().onAuthStateChanged((userObj) => {
       if (userObj) {
         dispatch(
@@ -44,8 +47,16 @@ const Navigation = () => {
         );
       }
     });
+    dispatch(getPlaylistData()).then((res) => {
+      playlist = res;
+    });
     dispatch(getImages());
     dispatch(getCategories());
+
+    SetWallsPlaylistAndroid.isWallpaperServiceRunning((isRunning) => {
+      playlist.running = isRunning;
+      dispatch(setPlaylistData(playlist));
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

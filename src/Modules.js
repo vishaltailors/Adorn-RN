@@ -1,3 +1,3 @@
 import { NativeModules } from 'react-native';
 
-export const { SetWallpaperAndroid } = NativeModules;
+export const { SetWallpaperAndroid, SetWallsPlaylistAndroid } = NativeModules;

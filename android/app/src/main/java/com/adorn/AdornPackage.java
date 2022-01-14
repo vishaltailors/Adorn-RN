@@ -21,7 +21,7 @@ public class AdornPackage implements ReactPackage {
         List<NativeModule> modules = new ArrayList<>();
 
         modules.add(new SetWallpaperModule(reactContext));
-
+        modules.add(new SetWallsPlaylistModule(reactContext));
         return modules;
     }
 
