@@ -1,3 +1,5 @@
+⚠️ This project is no longer being maintained, but you can still use it as a reference!
+-----
 # Adorn Wallpapers
 [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" width="150">](https://play.google.com/store/apps/details?id=com.adorn)
 
